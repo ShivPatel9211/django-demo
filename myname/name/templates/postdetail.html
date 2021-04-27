@@ -1,0 +1,95 @@
+{% extends 'base.html' %} {% block body %}
+<style>
+    .image {
+        height: 47vh !;
+        width: 38vw !;
+    }
+    
+    .mycard {
+        width: 79vw !important;
+        margin-top: 2%;
+        margin-bottom: 2%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .card {
+        margin: 0 20px;
+    }
+    .chr{
+        width:40%;
+    }
+    .chead{
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+</style>
+<div class="card-group mycard">
+    <div class="card">
+        <img src="{{detail.image.url}}" class="card-img-top image" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{detail.title}}</h5>
+            {% autoescape off %}
+            <p class="card-text">{{detail.content}}</p>
+            {% endautoescape %}
+        </div>
+        <div class="card-footer">
+            <p> Posted By :{{detail.author}}</p>
+            <small class="text-muted">{{detail.post_date}}</small>
+            <hr>
+            <h2 class="chead">Comment Section</h2>
+            <hr>
+            <div class='comment section'>
+                <form method="POST" action="/comment">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {% if comment is not None %} 
+                        {% for c in comment %}
+                        <label class="form-control-label"> <strong> {{c.comment}} </strong> by <small>{{c.user}}</small></label>
+                        <small class="text-muted">{{c.created_on}}</small>
+                        <hr class="chr">
+                        <br> {% endfor %}
+                        <hr> {% endif %}
+                        <div class="row">
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" rows='10' cols='15' placeholder="Write your comment" name='comment'>
+                                <input type="hidden" class="form-control" rows='10' name='sno' value="{{detail.sno}}">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary">Comment</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- </div>
+<div class="pagination">
+  <span class="step-links">
+    {% if page_obj.has_previous %}
+    <a href="?page=1">&laquo; first</a>
+    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+    {% endif %}
+
+    <span class="current">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">next</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+    {% endif %}
+  </span>
+</div>
+</div> -->
+</div>
+<style>
+    .text-center {
+        display: grid;
+        justify-content: center;
+    }
+</style>
+{% endblock %}

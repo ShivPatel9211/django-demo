@@ -1,0 +1,27 @@
+{% extends 'base.html'  %}
+
+{% block body %}
+<div class="text-center pt-3">
+  {% if allpost|length < 1 %}
+  <h2>Your searched result " {{query}} "  is not found</h2>
+  {% endif %}
+</div>
+<br>
+<hr>
+    <div class="card-group">
+        {% for i in allpost %}
+        <div class="card">
+          <img src="{{i.image.url}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{i.title}}</h5>
+            <p class="card-text">{{i.content}}</p>
+          </div>
+          <div class="card-footer">
+              <p>{{i.author}}</p>
+            <small class="text-muted">{{i.post_date}}</small>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+{%  endblock  %}

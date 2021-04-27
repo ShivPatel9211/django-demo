@@ -1,0 +1,105 @@
+{% extends 'base.html'  %}
+
+{% block body %}
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+<style>
+    body {
+        margin: 0;
+        font-family: 'Lato', sans-serif;
+        font-size: 12px;
+        line-height: 1.8em;
+        text-transform: none;
+        letter-spacing: .075em;
+        font-weight: bold;
+        font-style: normal;
+        text-decoration: none;
+        color: #e7bd74;
+        background-color: rgba(34,28,28);
+        display: block;
+      }
+      
+      .title {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+      }
+      
+      h1, h2, h3, h4 {
+        color: rgba(255,255,255);
+        font-weight: 100;
+        font-size: 3rem;
+      }
+      
+      a {
+        text-decoration: none;
+        color: #fff;
+      }
+</style>
+<section>
+    <div class="container">
+        <form action="" method="POST" enctype="multipart/form-data" >
+            {% csrf_token %}
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-8 col-xl-6">
+          <div class="row">
+            <div class="col text-center title">
+              <h1>Registation Form</h1>
+            </div>
+          </div>
+          <div class="row align-items-center">
+            <div class="col mt-4">
+              <input type="text" class="form-control" placeholder="Username" name='username' required>
+            </div>
+          </div>
+          <div class="row align-items-center mt-4">
+            <div class="col">
+              <input type="email" class="form-control" placeholder="Email" name='email'required>
+            </div>
+          </div>
+          <div class="row align-items-center mt-4">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Contact" name="contact" required>
+            </div>
+          </div>
+                    <div class="row align-items-center mt-4">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Postal Address" name='address' required >
+            </div>
+          </div>
+          <div class="row align-items-center mt-4">
+            <div class="col">
+              <input type="password" class="form-control" placeholder="Password" id='password' name='password' onkeyup='check();' >
+            </div>
+            <div class="col">
+              <input type="password" class="form-control" placeholder="Confirm Password" id="cpassword" name='cpassword' onkeyup='check();'>
+            </div>
+            <span id='message'></span>
+          </div>
+          <div class="row justify-content-start mt-4">
+            <div class="col">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input" name='check'>
+                  I hereby agree to abide by the <a href="/">Terms and Conditions.</a>
+                </label>
+              </div>
+            <button class="btn btn-primary mt-4">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    </div>
+  </section>
+  <script>
+    function check() {
+      if (document.getElementById('password').value ==
+        document.getElementById('cpassword').value) {
+        document.getElementById('message').style.color = 'green';
+        document.getElementById('message').innerHTML = 'matching';
+      } else {
+        document.getElementById('message').style.color = 'red';
+        document.getElementById('message').innerHTML = 'not matching';
+      }
+    }
+  </script>
+{%  endblock  %}

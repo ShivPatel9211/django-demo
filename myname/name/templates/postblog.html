@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block body %}
+<style>
+    .cont{
+        background-color: #FF6;
+        height: 92vh;
+        width: auto;
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+</style>
+<div class="cont">
+    <form method="POST">
+        {% csrf_token %}
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" id="title" name='title' placeholder="Enter title of the post">
+            </div>
+            <div class="mb-3">
+                <label for="content">Content</label>
+                <textarea class="form-control rounded-1" id="content" rows="5" name="content"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="Slug" class="form-label">Slug</label>
+              <input type="text" class="form-control" id="slug" name='slug' placeholder="Enter title of the post">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}
